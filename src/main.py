@@ -2,13 +2,15 @@ from Person import Person
 
 
 def main():
-    # Goal of this: Will show that the spy got incomprehensible data
-    spy = Person("Sniffer")
-    sender = Person("Sender")  # Will tell (N, E) to receiver
-    receiver = Person("Receiver")  # Will tell (N, E) to sender
-    sender.exchange_key(receiver)
+    sender = Person("Sender")
     print(sender)
-    print('--------')
+
+    receiver = Person("Receiver")
+    print(receiver)
+
+    sender.paired_with(receiver)
+
+    print(sender)
     print(receiver)
 
 
