@@ -8,11 +8,12 @@ class Person:
         self.__secret_key = self.rsa.get_private_key()
         self.public_key = self.rsa.get_public_key()
         self.paired_Person = None  # Person
+        self.formatted_public_key = self.rsa.get_formatted_key()
 
     def paired_with(self, pair: "Person"):
         # Exchanging of pair's RSA
         print(
-            f"Initiating key exchange between {self.username} and {pair.username}")
+            f"Initiating key exchange between {self.username} and {pair.username}\n")
         self.paired_Person = pair
         pair.paired_Person = self
         if pair.paired_Person is None:
@@ -23,10 +24,10 @@ class Person:
         val += f"Information for username: {self.username}\n"
         # at least 26 to cut off -- Begin public key -- part
         val += "----------------------\n"
-        val += f"Public key: {self.public_key[100:128:2]}\n"
+        val += f"Public key: {self.formatted_public_key}\n"
         if self.paired_Person is not None:
             val += "----------------------\n"
             val += f"Paired with: {self.paired_Person.username}\n"
-            val += f"With key: {self.paired_Person.public_key[100:128:2]}\n"
+            val += f"With key: {self.paired_Person.formatted_public_key}\n"
         val += "----------------------\n"
         return val
