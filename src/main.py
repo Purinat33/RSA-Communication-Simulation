@@ -26,7 +26,8 @@ def main():
     print(f' 5. Spy is sad and give up.')
     print(f" 6. Data actually reaches the receiver.")
     print(f" 7. Receiver gets: {receiver.read_raw(enc)}")
-    print(f" 8. Receiver uses their own private key: [REDACTED]")
+    print(
+        f" 8. Receiver uses their own private key: {str(receiver.private_key_hint)}...")
     print(f" 9. Receiver gets: {receiver.decrypt_message(enc)}")
     print("Transmission Ends")
 

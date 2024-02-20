@@ -12,6 +12,7 @@ class Person:
         self.public_key = self.rsa.get_public_key()
         self.paired_Person = None  # Person
         self.formatted_public_key = self.rsa.get_formatted_key()
+        self.private_key_hint = str(self.__private_key)[:19]
 
     def paired_with(self, pair: "Person"):
         # Exchanging of pair's RSA
