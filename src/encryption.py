@@ -4,6 +4,8 @@
 # Documentation:
 # https://stuvel.eu/python-rsa-doc/usage.html
 
+# https://sparkbyexamples.com/python/python-convert-bytes-to-string/
+
 # import os
 # from cryptography.hazmat.backends import default_backend
 # from cryptography.hazmat.primitives import serialization
@@ -30,6 +32,17 @@ class RSA:
         hex_key = hex(int_key)
         return hex_key.removeprefix('0x').upper()
 
+    # Use the opponent/paired person's public key for ENCRYPT
+    # Use our own private key for DECRYPT (attacker will get jumbled mess)
+    def encrypt(self, message: str, recipient_public_key: rsa.PublicKey) -> bytes:  # NOT OURS
+        encodedMessage = rsa.encrypt(
+            message.encode(), recipient_public_key)
+        return encodedMessage
+
+    def decrypt(self, encoded_message: bytes, self_private_key: rsa.PrivateKey) -> str:
+        decodedMessage = rsa.decrypt(
+            encoded_message, self_private_key)
+        return decodedMessage.decode()
 
 # class RSA:
 #     def __init__(self, key_size=2048) -> None:
